@@ -13,11 +13,8 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-header wd-200">
 						<ul class="list-unstyled user-profile-nav">
-							<li><a href="{{route('admin.dashboard')}}"><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
+							<li><a href="{{route(auth()->user()->role.'.profile.index')}}"><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
 							<li><a href=""><i class="icon ion-ios-gear-outline"></i> Settings</a></li>
-							<li><a href=""><i class="icon ion-ios-download-outline"></i> Downloads</a></li>
-							<li><a href=""><i class="icon ion-ios-star-outline"></i> Favorites</a></li>
-							<li><a href=""><i class="icon ion-ios-folder-outline"></i> Collections</a></li>
 							<li>
                                 <a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon ion-power"></i> Sign Out</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

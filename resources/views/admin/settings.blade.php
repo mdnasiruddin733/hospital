@@ -23,6 +23,7 @@
                 <x-form.input-text name="email" labelcol="2" value='{{settings()->email}}'>Site Email</x-form.input-text>
                 <x-form.input-text name="phone" labelcol="2" value='{{settings()->phone}}'>Site Phone</x-form.input-text>
                 <x-form.input-text name="address" labelcol="2" value='{{settings()->address}}'>Office Address</x-form.input-text>
+                <x-form.input-text name="map" labelcol="2" value='{{settings()->map}}'>Office Map(Iframe)</x-form.input-text>
                 <x-form.input-text name="slogan" labelcol="2" value='{{settings()->slogan}}'>Site slogan</x-form.input-text>
                 <x-form.input-text name="welcome_text_title" labelcol="2" value='{{settings()->welcome_text_title}}'>Welcome Text Title</x-form.input-text>
                 <x-form.editor name="welcome_text_short" labelcol="2" value='{{settings()->welcome_text_short}}'>Short Welcome Text</x-form.editor>

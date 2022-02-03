@@ -18,3 +18,9 @@ function upload($image,$folder,$prev_image=""){
     $image->storeAs($folder,$filename,"public");
     return "storage/".$folder."/".$filename;
 }
+
+
+function randomPassword($length=6){
+    $string="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz@!#$%^&*(){}[]\/";
+    return substr(str_shuffle($string),0,$length);
+}

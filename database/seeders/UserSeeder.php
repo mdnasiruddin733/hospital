@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-
+use App\Models\Doctor;
 class UserSeeder extends Seeder
 {
     /**
@@ -20,11 +20,14 @@ class UserSeeder extends Seeder
             "password"=>bcrypt(123456),
             "role"=>"admin"
         ]);
-        User::create([
+        $doctor=User::create([
             "name"=>"Doctor",
             "email"=>"doctor@gmail.com",
             "password"=>bcrypt(123456),
             "role"=>"doctor"
+        ]);
+        Doctor::create([
+            "user_id"=>$doctor->id
         ]);
         User::create([
             "name"=>"Patient",

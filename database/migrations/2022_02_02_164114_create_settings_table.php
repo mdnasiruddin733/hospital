@@ -22,6 +22,7 @@ class CreateSettingsTable extends Migration
             $table->string("email")->default("contact@hms.com");
             $table->string("phone")->default("013xxxxxxxx");
             $table->string("address")->default("Uttara, Sector No. 45, Dhaka, Bangladesh");
+            $table->text("map")->default('<iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d116797.66884654004!2d90.33774279795553!3d23.82118937781326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d23.7612256!2d90.420766!4m5!1s0x3755c59251b8eca5%3A0x29c83c89b6cf82b4!2sIUBAT%20GATE%20IUBAT%20GATE%2C%20IUBAT%2C%20Dhaka%201230!3m2!1d23.8883285!2d90.3905444!5e0!3m2!1sen!2sbd!4v1643859264268!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>');
             $table->text("slogan")->default("The customer is at the heart of our unique business model, which includes design.");
             $table->string("registration_status")->default('active');
             $table->string("banner")->default("img/banner.jpg");

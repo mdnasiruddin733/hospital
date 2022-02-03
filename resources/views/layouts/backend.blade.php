@@ -197,6 +197,7 @@
 	<script src="{{asset('backend/lib')}}//popper.js/popper.js"></script>
 	<script src="{{asset('backend/lib')}}//bootstrap/bootstrap.js"></script>
 	<script src="{{asset('backend/lib')}}//jquery-ui/jquery-ui.js"></script>
+	<script src="{{asset('backend')}}/lib/datatables/jquery.dataTables.js"></script>
 	<script src="{{asset('backend/lib')}}//perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
 	<script src="{{asset('backend/lib')}}//jquery.sparkline.bower/jquery.sparkline.min.js"></script>
 	<script src="{{asset('backend/lib')}}//d3/d3.js"></script>
@@ -253,16 +254,14 @@
 			confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 			if (result.isConfirmed) {
-				location.href=event.target.dataset['link']
-				Swal.fire(
-				'Deleted!',
-				'Your file has been deleted.',
-				'success'
-				)
+				event.preventDefault();
+				var link=event.target.dataset['link']
+				location.href=link
 			}
 		})
 		}
 	</script>
+	
 	@yield("scripts")
 </body>
 

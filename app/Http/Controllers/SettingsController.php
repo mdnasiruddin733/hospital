@@ -18,6 +18,7 @@ class SettingsController extends Controller
             "email"=>"required|email",
             "phone"=>"required",
             "address"=>"required",
+            "map"=>"required",
             "slogan"=>"required",
             "welcome_text_title"=>"required|max:100",
             "welcome_text_short"=>"required",
@@ -54,6 +55,7 @@ class SettingsController extends Controller
         $settings->email=$req->email;
         $settings->phone=$req->phone;
         $settings->address=$req->address;
+        $settings->map=$req->map;
         $settings->slogan=$req->slogan;
         $settings->welcome_text_title=$req->welcome_text_title;
         $settings->welcome_text_short=$req->welcome_text_short;
