@@ -1,5 +1,5 @@
 @if(Request::is('/'))
-<div class="page-hero bg-image overlay-dark" style="background-image: url({{asset('frontend')}}/assets/img/bg_image_1.jpg);">
+<div class="page-hero bg-image overlay-dark" style="background-image: url({{settings()->banner}});">
     <div class="hero-section">
       <div class="container text-center wow zoomIn" style="visibility: visible; animation-name: zoomIn;">
         <span class="subhead">Let's make your life happier</span>
@@ -9,11 +9,17 @@
     </div>
   </div>
 @else
-<div class="page-banner overlay-dark bg-image" style="background-image: url({{asset('frontend')}}/assets/img/bg_image_1.jpg);">
+<div class="page-banner overlay-dark bg-image" style="background-image: url({{settings()->banner}});">
     <div class="banner-section">
       <div class="container text-center wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-        @yield('bredcrumb')
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@yield('breadcrumb')</li>
+          </ol>
+        </nav>
+        <h1 class="font-weight-normal">@yield('breadcrumb-title')</h1>
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
-</div>
+  </div>
 @endif

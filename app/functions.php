@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Settings;
+use App\Models\SocialMedia;
+use App\Models\User;
 
 function settings(){
     return Settings::firstOrFail();
@@ -21,6 +23,19 @@ function upload($image,$folder,$prev_image=""){
 
 
 function randomPassword($length=6){
-    $string="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz@!#$%^&*(){}[]\/";
+    $string="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz";
     return substr(str_shuffle($string),0,$length);
+}
+
+function getPatientFromAppointment($patient_id){
+    return User::findOrFail($patient_id);
+}
+
+function getDoctorFromAppointment($doctor_id){
+    return User::findOrFail($doctor_id);
+}
+
+
+function medias(){
+    return SocialMedia::all();
 }

@@ -3,7 +3,7 @@
 @section("content")
     <div class="row">
         <div class="col-md-12" style="color:#000;">
-            <form action="{{route("doctor.profile.store")}}" method="post" enctype="multipart/form-data">
+            <form action="{{route("profile.store")}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <x-form.input-file name="image" accept="image/*"  labelcol="2" placeholder="Your Image">Your Image</x-form.input-file>
                 <div id="preview-image" class="text-center my-2">
@@ -12,7 +12,7 @@
                 
                 <x-form.input-text name="name" labelcol="2" value='{{auth()->user()->name}}'>Name</x-form.input-text>
                 <x-form.input-text name="email" labelcol="2" value='{{auth()->user()->email}}'>Email</x-form.input-text>
-                <x-form.input-text name="phone" labelcol="2" value='{{auth()->user()->email}}'>Phone</x-form.input-text>
+                <x-form.input-text name="phone" labelcol="2" value='{{auth()->user()->phone}}'>Phone</x-form.input-text>
                 <x-form.input-text name="whatsapp" labelcol="2" value='{{auth()->user()->doctor->whatsapp}}'>WhatsApp Number</x-form.input-text>
                 <x-form.input-text name="meet_link" labelcol="2" value='{{auth()->user()->doctor->meet_link}}'>Meet Link</x-form.input-text>
                 <x-form.input-text name="specialization" labelcol="2" value='{{auth()->user()->doctor->specialization}}'>Specialization</x-form.input-text>
@@ -30,7 +30,7 @@
                     </x-slot>
                 </x-form.select>
                 <x-form.input-text name="time" labelcol="2" value='{{auth()->user()->doctor->time}}'>Time</x-form.input-text>
-                <x-form.input-number name="visit_fee" labelcol="2" value='{{auth()->user()->doctor->visit_fee}}'>Time</x-form.input-number>
+                <x-form.input-number name="visit_fee" labelcol="2" value='{{auth()->user()->doctor->visit_fee}}'>Visit Fee</x-form.input-number>
                 
                 <x-form.editor name="detail" labelcol="2" value='{{auth()->user()->doctor->detail}}'>Detail</x-form.editor>
                 <div class="row justify-content-end">

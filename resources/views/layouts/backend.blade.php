@@ -34,6 +34,7 @@
 	<link href="{{asset('backend/lib')}}//perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
 	<link href="{{asset('backend/lib')}}//rickshaw/rickshaw.min.css" rel="stylesheet">
 	<!-- Starlight CSS -->
+	<link rel="stylesheet" href="{{asset('frontend')}}/assets/css/maicons.css">
 	<link rel="stylesheet" href="{{asset('backend/css')}}//starlight.css"> 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
@@ -41,6 +42,7 @@
 	<link href="{{asset('backend')}}/lib/medium-editor/default.css" rel="stylesheet">
     <link href="{{asset('backend')}}/lib/summernote/summernote-bs4.css" rel="stylesheet">
 	<link href="{{asset('css/bootstrap-tagsinput.css')}}" rel="stylesheet">
+	
 	@yield('styles')
 </head>
 <body>

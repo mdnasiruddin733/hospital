@@ -1,21 +1,20 @@
-
   <header>
     <div class="topbar">
       <div class="container">
         <div class="row">
           <div class="col-sm-8 text-sm">
             <div class="site-info">
-              <a href="tel:{{siteData()->site_phone}}"><span class="mai-call text-primary"></span>{{siteData()->site_phone}}</a>
+              <a href="#"><span class="mai-call text-primary"></span>{{settings()->phone}}</a>
               <span class="divider">|</span>
-              <a href="mailto:{{siteData()->site_email}}"><span class="mai-mail text-primary"></span>{{siteData()->site_email}}</a>
+              <a href="mailto:{{settings()->email}}"><span class="mai-mail text-primary"></span>{{settings()->email}}</a>
             </div>
           </div>
           <div class="col-sm-4 text-right text-sm">
             <div class="social-mini-button">
-              <a href="#"><span class="mai-logo-facebook-f"></span></a>
-              <a href="#"><span class="mai-logo-twitter"></span></a>
-              <a href="#"><span class="mai-logo-dribbble"></span></a>
-              <a href="#"><span class="mai-logo-instagram"></span></a>
+              @foreach(medias() as $media)
+              <a href="{{$media->link}}"><span class="{{$media->icon}}"></span></a>
+              @endforeach
+              
             </div>
           </div>
         </div> <!-- .row -->
@@ -24,7 +23,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="#"><span class="text-primary">{{siteData()->site_name}}</span></a>
+        <a class="navbar-brand" href="#"><span class="text-primary">{{settings()->short_name}}</span></a>
 
         <form action="#">
           <div class="input-group input-navbar">
@@ -41,37 +40,29 @@
 
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item @yield('home')">
-              <a class="nav-link" href="{{url('/')}}">Home</a>
+            <li class="nav-item {{linkActive('frontend.index')}}">
+              <a class="nav-link" href="{{route('frontend.index')}}">Home</a>
             </li>
-            <li class="nav-item @yield('about-us')">
-              <a class="nav-link" href="{{url('/about-us')}}">About Us</a>
+            <li class="nav-item  {{linkActive('frontend.about')}}">
+              <a class="nav-link" href="{{route('frontend.about')}}">About Us</a>
             </li>
-            <li class="nav-item @yield('doctors')">
-              <a class="nav-link" href="{{url('/doctor')}}">Doctors</a>
+            <li class="nav-item  {{linkActive('frontend.doctors')}}">
+              <a class="nav-link" href="{{route('frontend.doctors')}}">Doctors</a>
             </li>
-            <li class="nav-item @yield('news')">
-              <a class="nav-link" href="{{url("/news")}}">News</a>
+            <li class="nav-item  {{linkActive('frontend.news')}}">
+              <a class="nav-link" href="{{route('frontend.news')}}">News</a>
             </li>
-            <li class="nav-item @yield('contact')">
-              <a class="nav-link" href="{{url("/contact-us")}}">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="{{url('/login')}}">Login</a>
+            <li class="nav-item  {{linkActive('frontend.contact')}}">
+              <a class="nav-link" href="{{route('frontend.contact')}}">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="{{url('/register')}}">Register</a>
+              <a class="btn btn-primary ml-lg-3" href="{{route('login')}}">Login</a>
+            </li>
+             <li class="nav-item">
+              <a class="btn btn-primary ml-lg-3" href="{{route('register')}}">Register</a>
             </li>
           </ul>
         </div> <!-- .navbar-collapse -->
       </div> <!-- .container -->
     </nav>
   </header>
-
-
-
-
-
-
-
-
