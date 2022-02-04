@@ -1,9 +1,10 @@
-@extends('layouts.app')
-
+@extends('layouts.frontend')
+@section("breadcrumb","Login")
+@section("breadcrumb-title","Login here")
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center my-4" style="margin-top:40px;">
+        <div class="col-md-8 p-5">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 

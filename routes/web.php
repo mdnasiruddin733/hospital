@@ -5,15 +5,20 @@ use App\Http\Controllers\Doctor\ProfileController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialMediaController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
+use App\Models\News;
 Auth::routes();
 
+Route::get("/register",function(){
+    return redirect(route("login"));
+})->name("register");
 Route::group(["middleware"=>["auth"]],function(){
     Route::get("/profile",[ProfileController::class,"index"])->name("profile.index");
     Route::post("/profile/store",[ProfileController::class,"store"])->name("profile.store");
@@ -80,9 +85,32 @@ Route::group(["middleware"=>["auth","patient"],"prefix"=>"patient","as"=>"patien
     Route::get("/prescription/{id}",[PrescriptionController::class,"show"])->name("prescription.show");
     Route::get("/prescription/download/{id}",[PrescriptionController::class,"download"])->name("prescription.download");
     Route::get("/appointments",[PrescriptionController::class,"appointments"])->name("appointments");
-     Route::get("/appointment/delete/{id}",[PrescriptionController::class,"deleteAppointment"])->name("appointment.delete");
+    Route::get("/appointment/delete/{id}",[PrescriptionController::class,"deleteAppointment"])->name("appointment.delete");
+    Route::get("/my-payments",[PaymentController::class,"showMyPayments"])->name("my-payments");
+    Route::get("/pay/{id}",[PaymentController::class,"pay"])->name("pay");
 });
 
+// Backend routes 
+
+
+Route::group(["middleware"=>["auth"],"as"=>"backend."],function(){
+    Route::get("backend/news",[NewsController::class,"index"])->name("news");
+    Route::get("backend/news/create",[NewsController::class,"create"])->name("news.create");
+    Route::post("/backend/news/store",[NewsController::class,"store"])->name("news.store");
+    Route::get("backend/news/edit/{id}",[NewsController::class,"edit"])->name("news.edit");
+    Route::post("backend/news/update",[NewsController::class,"update"])->name("news.update");
+    Route::get("backend/news/delete/{id}",[NewsController::class,"delete"])->name("news.delete");
+});
+
+
+Route::group(["middleware"=>["auth","admin"],"as"=>"backend."],function(){
+    Route::get("backend/payments",[PaymentController::class,"index"])->name("payments");
+    Route::get("backend/payment/create",[PaymentController::class,"create"])->name("payment.create");
+    Route::post("/backend/payment/store",[PaymentController::class,"store"])->name("payment.store");
+    Route::get("backend/payment/edit/{id}",[PaymentController::class,"edit"])->name("payment.edit");
+    Route::post("backend/payment/update",[PaymentController::class,"update"])->name("payment.update");
+    Route::get("backend/payment/delete/{id}",[PaymentController::class,"delete"])->name("payment.delete");
+});
 
 // Frontend routes
 
@@ -94,3 +122,20 @@ Route::get("/contact",[FrontendController::class,"contact"])->name("frontend.con
 Route::get("/doctor/details/{id}",[FrontendController::class,"doctorDetails"])->name("frontend.doctor.details");
 Route::get("/appoint/{id}",[FrontendController::class,"appoint"])->name("frontend.appoint");
 Route::post("contact/mail",[ContactController::class,"sendMail"])->name("frontend.mail");
+Route::get("/news/details/{id}",function($id){
+    $news=News::findOrFail($id);
+    $recent_news=News::latest()->where("status","Active")->limit(4)->get();
+    return view("frontend.news-details",compact("news","recent_news"));
+})->name("news.details");
+
+Route::post("/news/search",function(Request $req){
+    $term="%".$req->term."%";
+    $news=News::where("status","Active")
+                ->orwhere("category","like",$term)
+                ->orWhere("title","like",$term)
+                ->orWhere("tags","like",$term)
+                ->orWhere("body","like",$term)
+                ->first();
+    $recent_news=News::latest()->where("status","Active")->limit(4)->get();
+    return view("frontend.news-details",compact("news","recent_news"));
+})->name("news.search");

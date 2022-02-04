@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\News;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -17,16 +18,17 @@ class FrontendController extends Controller
   }
 
   public function about(){
-    $doctors=User::latest()->where("role","doctor")->get();
+    $doctors=User::inRandomOrder()->latest()->where("role","doctor")->limit(12)->get();
       return view("frontend.about",compact("doctors"));
   }
 
   public function doctors(){
-     $doctors=User::latest()->where("role","doctor")->get();
+     $doctors=User::inRandomOrder()->latest()->where("role","doctor")->limit(20)->get();
       return view("frontend.doctors",compact("doctors"));
   }
    public function news(){
-      return view("frontend.news");
+     $newses=News::where("status","Active")->paginate(10);
+      return view("frontend.news",compact("newses"));
   }
    public function contact(){
       return view("frontend.contact");

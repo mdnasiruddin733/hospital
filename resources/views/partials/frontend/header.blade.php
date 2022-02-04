@@ -55,12 +55,18 @@
             <li class="nav-item  {{linkActive('frontend.contact')}}">
               <a class="nav-link" href="{{route('frontend.contact')}}">Contact</a>
             </li>
+            @guest
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="{{route('login')}}">Login</a>
             </li>
+            @endguest
+            @auth
              <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="{{route('register')}}">Register</a>
+              <a class="btn btn-primary ml-lg-3" href="{{route('login')}}">Dashboard</a>
             </li>
+            @endauth
+
+
           </ul>
         </div> <!-- .navbar-collapse -->
       </div> <!-- .container -->

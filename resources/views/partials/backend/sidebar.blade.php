@@ -47,6 +47,22 @@
                 <div class="sl-menu-item"> <i class="menu-item-icon icon ion-ios-circle-outline tx-24"></i> <span class="menu-item-label">Appointments</span></div>
             </a>
         @endpatient
+
+        @if(Auth::user()->role=="admin" || Auth::user()->role=="doctor")
+            <a href="{{route('backend.news')}}" class="sl-menu-link {{linkActive('backend.news')}}">
+                <div class="sl-menu-item"> <i class="menu-item-icon icon ion-ios-circle-outline tx-24"></i> <span class="menu-item-label">News</span></div>
+            </a>
+        @endif
+        @admin
+            <a href="{{route('backend.payments')}}" class="sl-menu-link {{linkActive('backend.payments')}}">
+                <div class="sl-menu-item"> <i class="menu-item-icon icon ion-ios-circle-outline tx-24"></i> <span class="menu-item-label">Payments</span></div>
+            </a>
+        @endadmin
+        @patient
+            <a href="{{route('patient.my-payments')}}" class="sl-menu-link {{linkActive('patient.my-payments')}}">
+                <div class="sl-menu-item"> <i class="menu-item-icon icon ion-ios-circle-outline tx-24"></i> <span class="menu-item-label">My Payments</span></div>
+            </a>
+        @endpatient
         <!-- sl-menu-link -->
     </div>
     <!-- sl-sideleft-menu -->
